@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/main1.css' %}">
+{% endblock styles %}
+
+
+{% block page_content %}
+    <!-- Jumbotron -->
+    <div class="p-3 text-center bg-body-tertiary">
+      <h1 class="mb-3">
+        Спектрально-временная морфология излучения солнечных вспышек в микроволновом диапазоне
+      </h1>
+      <h4 class="mb-3">
+        РНФ Проект № 24-22-00315
+      </h4>
+    </div>
+
+    <!-- Tabs for conference and papers-->
+    <ul class="nav nav-tabs mt-3">
+      <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %} "  href="{% url 'home:home' %}">О проекте</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'users' %} active{% endif %}" href="{% url "home:users" %}">Участники</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'publications' %}active{% endif %}" href="{% url "home:publications" %}">Публикации</a>
+      </li>
+      <li class="nav-item ">
+        <a class="nav-link {% if request.resolver_match.url_name == 'conference' %}active{% endif %}" href="{% url 'home:conference' %}">Конференции</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'results' %}active{% endif %}" href="{% url "home:results" %}">Результаты</a>
+      </li>
+    </ul>
+
+
+
+    {% block tab_data %}
+
+
+    {% endblock tab_data %}
+
+{% endblock page_content %}
+
+

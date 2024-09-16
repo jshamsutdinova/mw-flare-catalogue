@@ -1,0 +1,56 @@
+<!-- catalogue/templates/catalogue/month_detail.html -->
+
+{% extends "base.html" %}
+
+{% block page_content %}
+<h1> {{ list_flare.title }} </h1>
+<div class="row">
+    <div class="col-md-4">
+        <h5>Список событий:</h5>
+        <p>{{ list_flare.description }}</p>
+    </div>
+    <div>
+      {% if list_flare.image %}
+        <img src="{{ list_flare.image.url }}" width="100%">
+      {% endif %}
+    </div>
+</div>
+<div class='row'>
+  <h2> here plot </h2>
+  {{ plot_div }}
+</div>
+
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Time start</th>
+        {% comment %} <th scope="col">Time end</th> {% endcomment %}
+        <th scope="col">Time end</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">1</th>
+        <td>00:30:00</td>
+        <td>00:35:00</td>
+        <td>info</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>01:34:54</td>
+        <td>01:39:00</td>
+        <td>inf0</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>02:56:00</td>
+        <td>03:02:00</td>
+        <td>info</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+{% endblock page_content %}

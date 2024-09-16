@@ -1,0 +1,40 @@
+<!-- catalogue/templates/catalogue/month_index.html -->
+
+{% extends "base.html" %}
+
+{% block page_content %}
+<h1>Каталог вспышек</h1>
+
+<div class='row mb-2' name='info'>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+    labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+    laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
+    in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat 
+    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+</div>
+
+<div class="row">
+    <nav class="nav ">
+        <a class="nav-link active" aria-current="page" href="#">Год</a>
+        <a class="nav-link" href="#">Сортировка</a>
+        <a class="nav-link" href="#">Календарь</a>
+      </nav>
+{% for month in months %}
+    <div class="col-md-4">
+        <div class="card mb-2">
+            {% if month.image %}
+                <img class="card-img-top" src="{{ month.image.url }}">
+            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title"> {{ month.title }} </h5>
+                <p class="card-text">{{ month.description }}</p>
+                <a href="{% url "month_detail" month.pk %}" class="btn btn-primary">
+                    Смотреть
+                </a>
+            </div>
+        </div>
+    </div>
+
+{% endfor %}
+
+{% endblock page_content %}

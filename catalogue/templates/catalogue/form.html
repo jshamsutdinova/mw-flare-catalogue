@@ -1,0 +1,36 @@
+<!-- catalogue/templates/catalogue/form_year_month.html -->
+{% extends "base.html" %}
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/catalogue.css' %}">
+{% endblock styles %}
+
+{% block page_content %}
+    <div class="container mt-4">
+        <h3> Select year and month </h3>
+
+        <div class='row'>
+            <div class='col-md-2'>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Year</option>
+                    <option value="1">2023</option>
+                    <option value="2">2024</option>
+                  </select>
+            </div>
+        </div>
+        
+        <div class='row'>
+            <div class='col-md-2'>
+        
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    
+    </div>
+
+{% endblock page_content %}

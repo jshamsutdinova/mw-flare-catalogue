@@ -1,0 +1,80 @@
+{% extends "base_main.html" %}
+
+
+{% block tab_data %}
+
+{% for conf in conferences %}
+    <div class="mt-4">
+        <h4 class='fw-bold'> {{ conf.name_conf }} </h4>
+        <p> {{ conf.date}}, {{ conf.place }} </p>
+    </div>
+
+    <div class='row g-3'>
+
+        {% for press in presentation %}
+            <div class="col-md-6 col-6">
+                <div class="card h-100">
+                    <div class="card-header">
+                        {{ press.type }}
+                    </div>
+                    <div class="card-body flex-column">
+                        <h5 class="card-title">  {{ press.name }} </h5>
+                        <div class="card-text font-weight-bold"> 
+                            <p> <b class="fw-bold"> {{ press.first_author }} </b> {{ press.authors }}</p>
+                        </div>
+                            {% comment %} <div class="text-end"> {% endcomment %}
+                            {% comment %} <a href="#" class="mt-auto btn btn-outline-primary"> Открыть </a> {% endcomment %}
+                        {% comment %} </div> {% endcomment %}
+                        {% comment %} <div class="card-footer bg-transparent border-success">Открыть</div> {% endcomment %}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+        
+    </div>
+
+        
+        {% comment %} <div class="card col-md-4 mx-auto">
+            <div class="card-header">
+                Устный доклад
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Название доклада</h5>
+            </div>
+        </div>
+
+        <div class="card col-md-4 mx-auto">
+            <div class="card-header">
+                Устный доклад
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Название доклада </h5>
+            </div>
+        </div>
+
+        <div class="card col-md-4 mx-auto">
+            <div class="card-header">
+                Устный доклад
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Название доклада</h5>
+            </div>
+        </div> {% endcomment %}
+
+    
+    
+    
+    {% comment %} <div class="col-md-4">
+        <div class="card mb-2">
+            <div class="card-header">
+                {{}}
+              </div>>
+            <div class="card-body">
+                <h5 class="card-title"> {{}}
+            </div>
+        </div>
+    </div> {% endcomment %}
+
+{% endfor %}
+
+{% endblock tab_data %}
