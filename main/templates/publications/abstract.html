@@ -29,9 +29,16 @@
     <div class='row g-3 mx-5'>
         <ol>
             {% for press in presentation %}
-            <li>
-                {{press.first_author}}, {{press.authors}} // <b class="fw-bold"> {{ press.name }} </b> // C.{{press.page}}
-            </li>
+              {% if press.conf_id == conf.id %}
+                <li>
+                    {{press.first_author}}, {{press.authors}} //
+                    {% if press.page != 0 %}
+                      <b class="fw-bold"> {{ press.name }} </b>// C.{{press.page}}.
+                    {% else %}
+                      <b class="fw-bold"> {{ press.name }}. </b>
+                    {% endif %}
+                </li>
+              {% endif %}
             {% endfor %}
         </ol>
     </div>

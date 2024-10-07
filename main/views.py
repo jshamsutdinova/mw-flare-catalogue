@@ -1,8 +1,21 @@
+from typing import Any
 from django.shortcuts import render
 from main.models import *
+from django.views.generic.detail import DetailView
 
 
-# Create your views here.
+class ConferenceDetailView(DetailView):
+    model = Presentation
+    context_object_name = 'presentation_list'
+    template_name = 'tabs/conference.html'
+
+    def get_context_data(self, request, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        context['presentation_list'] = Presentation.objects.filter(conf_id=self.kwargs['pk'])
+
+        return render(request, "tabs/conference.html", context)
+
+
 def home(request):
     return render(request, "main/home.html", {})
 
@@ -36,7 +49,7 @@ def tab_results(request):
 
 def tab_publication_abstract(request):
     conferences = Conference.objects.all()
-    presentation = Presentation.objects.filter(conf_id=1)
+    presentation = Presentation.objects.all()
     context = {
         "conferences": conferences,
         "presentation": presentation
