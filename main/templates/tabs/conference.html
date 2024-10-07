@@ -12,28 +12,28 @@
     <div class='row g-3'>
 
         {% for press in presentation %}
-            <div class="col-md-6 col-6">
-                <div class="card h-100">
-                    <div class="card-header">
-                        {{ press.type }}
-                    </div>
-                    <div class="card-body flex-column">
-                        <h5 class="card-title">  {{ press.name }} </h5>
-                        <div class="card-text font-weight-bold"> 
-                            <p> <b class="fw-bold"> {{ press.first_author }} </b> {{ press.authors }}</p>
+            {% if press.conf_id == conf.id %}
+                <div class="col-md-6 col-6">
+                    <div class="card h-100">
+                        <div class="card-header">
+                            {{ press.type }}
                         </div>
-                            {% comment %} <div class="text-end"> {% endcomment %}
-                            {% comment %} <a href="#" class="mt-auto btn btn-outline-primary"> Открыть </a> {% endcomment %}
-                        {% comment %} </div> {% endcomment %}
-                        {% comment %} <div class="card-footer bg-transparent border-success">Открыть</div> {% endcomment %}
+                        <div class="card-body flex-column">
+                            <h5 class="card-title">  {{ press.name }} </h5>
+                            <div class="card-text font-weight-bold"> 
+                                <p> <b class="fw-bold"> {{ press.first_author }} </b> {{ press.authors }}</p>
+                            </div>
+                                {% comment %} <div class="text-end"> {% endcomment %}
+                                {% comment %} <a href="#" class="mt-auto btn btn-outline-primary"> Открыть </a> {% endcomment %}
+                            {% comment %} </div> {% endcomment %}
+                            {% comment %} <div class="card-footer bg-transparent border-success">Открыть</div> {% endcomment %}
+                        </div>
                     </div>
                 </div>
-            </div>
+            {%endif%}
         {% endfor %}
         
     </div>
-
-        
         {% comment %} <div class="card col-md-4 mx-auto">
             <div class="card-header">
                 Устный доклад

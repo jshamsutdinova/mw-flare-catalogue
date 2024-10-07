@@ -18,6 +18,7 @@ class Publication(models.Model):
     def __str__(self):
         return self.title
 
+# class Proceedings(models.Model):
 
 class Conference(models.Model):
     name_conf = models.TextField()
@@ -38,7 +39,7 @@ class Presentation(models.Model):
     page = models.IntegerField(null=True)
     
     class  Meta:
-        ordering = ['-type', 'name']
+        ordering = ['-type', 'first_author']
 
     def __str__(self):
         return f"{self.first_author} {self.name}"

@@ -35,7 +35,7 @@ def tab_publications(request):
 
 def tab_conference(request):
     conferences = Conference.objects.all()
-    presentation = Presentation.objects.filter(conf_id=1)
+    presentation = Presentation.objects.all()
     context = {
         "conferences": conferences,
         "presentation": presentation
@@ -49,7 +49,7 @@ def tab_results(request):
 
 def tab_publication_abstract(request):
     conferences = Conference.objects.all()
-    presentation = Presentation.objects.all()
+    presentation = Presentation.objects.order_by('first_author', 'name')
     context = {
         "conferences": conferences,
         "presentation": presentation
