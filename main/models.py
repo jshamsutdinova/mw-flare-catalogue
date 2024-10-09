@@ -18,13 +18,28 @@ class Publication(models.Model):
     def __str__(self):
         return self.title
 
-# class Proceedings(models.Model):
+
+class Proceedings(models.Model):
+    authors = models.TextField()
+    title = models.TextField()
+    journal = models.TextField()
+    year = models.IntegerField()
+    parameters = models.CharField(max_length=20, null=True, blank=True)
+    doi = models.CharField(max_length=20, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.journal} // {self.title}"
+    
+    class Meta:
+        verbose_name = 'Proceeding'
+        verbose_name_plural = 'Proceedings'
+    
 
 class Conference(models.Model):
     name_conf = models.TextField()
     date  = models.CharField(max_length=20)
     place = models.TextField()
-    url_abstract = models.URLField(null=True)
+    url_abstract = models.URLField(null=True, blank=True)
 
     def __str__(self):
         return self.name_conf
@@ -42,5 +57,5 @@ class Presentation(models.Model):
         ordering = ['-type', 'first_author']
 
     def __str__(self):
-        return f"{self.first_author} {self.name}"
+        return f"{self.conf} // {self.first_author} // {self.name}"
 

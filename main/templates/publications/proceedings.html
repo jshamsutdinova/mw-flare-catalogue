@@ -19,7 +19,21 @@
 
 {% block tab_publication %}
 
-<h2> Proceedings </h2>
+<div class="mt-4">
+  <ol>
+  {% for publication in proceedings%}
+    <li class="mb-2"> 
+      {{publication.authors}}.
+      <b>{{publication.title}} </b>//
+      {{publication.journal}}. {{publication.year}}. {{publication.parameters}}.
+      
+      {%if publication.doi != NULL %}
+        {{publication.doi}}
+      {%endif%}
+    </li>
+  {% endfor %}
+  </ol>
+</div>
 
 {% endblock tab_publication %}
 

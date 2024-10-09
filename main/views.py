@@ -58,7 +58,9 @@ def tab_publication_abstract(request):
 
 
 def tab_publication_proceedings(request):
-    return render(request, "publications/proceedings.html", {})
+    proceeding = Proceedings.objects.all()
+    context = {'proceedings': proceeding}
+    return render(request, "publications/proceedings.html", context)
 
 
 def tab_publication_papers(request):
