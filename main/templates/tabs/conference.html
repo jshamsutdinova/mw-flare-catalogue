@@ -5,13 +5,35 @@
 
 {% for conf in conferences %}
     <div class="mt-4">
-        <h4 class='fw-bold'> {{ conf.name_conf }} </h4>
-        <p> {{ conf.date}}, {{ conf.place }} </p>
+        <h4 class='fw-bold' style="color: #0a4275;"> {{ conf.name_conf }} </h4>
+        <div class="d-flex justify-content-between">
+            <h5 class="text-muted"><em> {{ conf.date}}, {{ conf.place }} </em></h5>
+            <h5><a href="https://plasma2024.cosmos.ru/"> https://plasma2024.cosmos.ru/ </a> </h5>
+        </div>
     </div>
 
     <div class='row g-3'>
-
+        <h5 style="color: grey;"><b>Устные доклады</b></h5>
         {% for press in presentation %}
+            {% if press.conf_id == conf.id and press.type == 'Устный доклад'%}
+                <div class="my-1" style="padding-left:30px;"> 
+                    <b>{{ press.name }}</b> <u><em> {{ press.first_author }} </em></u> <em>{{ press.authors }}</em>
+                    <a href="">[pdf]</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+ 
+        <h5 style="color: grey;"><b>Постеры</b></h5>
+        {% for press in presentation %}
+            {% if press.conf_id == conf.id and press.type == 'Постер'%}
+                <div class="my-1" style="padding-left:30px;"> 
+                    <b>{{ press.name }}</b> <u><em> {{ press.first_author }} </em></u> <em>{{ press.authors }}</em>
+                    <a href="">[pdf]</a>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <!-- {% for press in presentation %}
             {% if press.conf_id == conf.id %}
                 <div class="col-md-6 col-6">
                     <div class="card h-100">
@@ -31,7 +53,7 @@
                     </div>
                 </div>
             {%endif%}
-        {% endfor %}
+        {% endfor %} -->
         
     </div>
         {% comment %} <div class="card col-md-4 mx-auto">
