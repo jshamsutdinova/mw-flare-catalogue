@@ -6,13 +6,16 @@
 <div class='mt-3'>
   <ul class="nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'abstract' %}disabled{% endif %} " href="{% url 'home:abstract' %}">Тезисы </a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'publications' %}disabled{% endif %} "
+           href="{% url 'home:abstract' %}">Тезисы </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'proceedings' %}disabled{% endif %}" href="{% url 'home:proceedings' %}">Труды конференций</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'proceedings' %}disabled{% endif %}"
+           href="{% url 'home:proceedings' %}">Труды конференций</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'papers' %}disabled{% endif %}" href="{% url 'home:papers' %}">Статьи</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'papers' %}disabled{% endif %}"
+           href="{% url 'home:papers' %}">Статьи</a>
       </li>
     </ul>
 </div>  

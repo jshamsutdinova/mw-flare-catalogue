@@ -23,16 +23,16 @@
         <a class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %} "  href="{% url 'home:home' %}">О проекте</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'users' %} active{% endif %}" href="{% url "home:users" %}">Участники</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'users' %} active{% endif %}" href="{% url 'home:users' %}">Участники</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'publications' %}active{% endif %}" href="{% url "home:publications" %}">Публикации</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'publication' %}active{% endif %}" href="{% url 'home:publication' %}">Публикации</a>
       </li>
       <li class="nav-item ">
         <a class="nav-link {% if request.resolver_match.url_name == 'conference' %}active{% endif %}" href="{% url 'home:conference' %}">Конференции</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link {% if request.resolver_match.url_name == 'results' %}active{% endif %}" href="{% url "home:results" %}">Результаты</a>
+        <a class="nav-link {% if request.resolver_match.url_name == 'results' %}active{% endif %}" href="{% url 'home:results' %}">Результаты</a>
       </li>
     </ul>
 

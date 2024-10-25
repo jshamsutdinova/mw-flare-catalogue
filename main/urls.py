@@ -12,7 +12,7 @@ publications_patterns = [
 
 tab_patterns = [
     path("users/", views.tab_users, name="users"),
-    path("publications/", views.tab_publications, name="publications"),
+    path("publications/", views.tab_publication_abstract, name="publication"),
     path("publications/", include(publications_patterns)),
     path("conference/", views.tab_conference, name="conference"),
     path("results/", views.tab_results, name='results'),

@@ -17,8 +17,8 @@
         {% for press in presentation %}
             {% if press.conf_id == conf.id and press.type == 'Устный доклад'%}
                 <div class="my-1" style="padding-left:30px;"> 
-                    <b>{{ press.name }}</b> <u><em> {{ press.first_author }} </em></u> <em>{{ press.authors }}</em>
                     <a href="">[pdf]</a>
+                    <b>{{ press.name }}</b><em><u> {{ press.first_author }}</u> {{ press.authors }}</em>    
                 </div>
             {% endif %}
         {% endfor %}
@@ -27,8 +27,8 @@
         {% for press in presentation %}
             {% if press.conf_id == conf.id and press.type == 'Постер'%}
                 <div class="my-1" style="padding-left:30px;"> 
-                    <b>{{ press.name }}</b> <u><em> {{ press.first_author }} </em></u> <em>{{ press.authors }}</em>
                     <a href="">[pdf]</a>
+                    <b>{{ press.name }}</b><em><u> {{ press.first_author }}</u> {{ press.authors }}</em>  
                 </div>
             {% endif %}
         {% endfor %}
