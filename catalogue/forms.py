@@ -1,17 +1,15 @@
 from django import forms
+from .models import YearMonth
+from django.utils.dates import MONTHS
 
 
-YEARS = [x for x in range(2023, 2025)]
-
-class FormDate(forms.Form):
-    dt = forms.DateField(
-        label="Choose a year",
-        required=True,
-        widget=forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"}),
-        input_formats=["%Y-%m"]
-    )
+YEAR_CHOICES =( 
+    (2023, 2023), 
+    (2024, 2024)
+) 
 
 
-class UserForm(forms.Form):
-    dt = forms.DateField(label='Choose year',
-                         widget=forms.SelectDateWidget(years=YEARS))
+class YearMonthForm(forms.Form):
+    year = forms.ChoiceField(choices=YEAR_CHOICES)
+    month = forms.ChoiceField(choices=MONTHS)
+ 

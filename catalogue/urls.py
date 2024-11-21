@@ -3,9 +3,8 @@
 from django.urls import path
 from catalogue import views
 
+app_name = "catalogue"
 
 urlpatterns = [
-    # path("", views.month_index, name="month_index"),
-    path("", views.form_year_month),
-    path("<int:pk>/", views.month_detail, name="month_detail"),
+    path("", views.test, name='select_year_month'),
 ]

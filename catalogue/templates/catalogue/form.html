@@ -8,29 +8,48 @@
 
 {% block page_content %}
     <div class="container mt-4">
-        <h3> Select year and month </h3>
-
+        <h3> Select year and month </h3>        
         <div class='row'>
-            <div class='col-md-2'>
-                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                    <option selected>Year</option>
-                    <option value="1">2023</option>
-                    <option value="2">2024</option>
-                  </select>
-            </div>
-        </div>
+            <div class='col-md-6'>
         
-        <div class='row'>
-            <div class='col-md-2'>
-        
-                <form method="post">
+                <form method="post" class='form'>
                     {% csrf_token %}
-                    {{ form.as_p }}
-                    <input type="submit" value="Submit">
+                    <div class="form-group">
+                        <table>
+                            {{ form.as_table }}
+                        </table>
+                    </div>
+                    <input type="submit" value="Submit" class="btn btn-primary">
                 </form>
+
             </div>
         </div>
-    
+        <div>
+        {% if records.count > 0 %}
+            <h2>List event in {{ month }}, {{ year }} </h2>
+            <table>
+                <thead align="center">
+                    <tr>
+                        <th width="20%"> Date </th>
+                        <th width="20%"> Flare number </th>
+                        <th width="50%"> Diagram </th>
+                    </tr>
+                </thead>
+                <tbody align="center">
+                {% for record in records %}
+                    <tr>
+                        <td> {{ record }} </td>
+                        <td> {{ record.flare_num }} </td>
+                        <td> {{ record.diagram }} </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+
+        
+        {% elif  records.count == 0 %}
+            <h2> No events in {{ month }}, {{ year }}</h2>    
+        {% endif %}
+        </div>
     </div>
 
 {% endblock page_content %}
