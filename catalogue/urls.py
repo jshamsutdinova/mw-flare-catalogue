@@ -6,5 +6,5 @@ from catalogue import views
 app_name = "catalogue"
 
 urlpatterns = [
-    path("", views.test, name='select_year_month'),
+    path("", views.index, name='select_year_month'),
 ]
