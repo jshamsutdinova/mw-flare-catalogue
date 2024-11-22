@@ -13,7 +13,7 @@ class Publication(models.Model):
     authors = models.TextField()
     title   = models.TextField()
     journal = models.TextField()
-    doi = models.CharField(max_length=20)
+    doi = models.CharField(max_length=50)
 
     def __str__(self):
         return self.title
@@ -25,7 +25,7 @@ class Proceedings(models.Model):
     journal = models.TextField()
     year = models.IntegerField()
     parameters = models.CharField(max_length=20, null=True, blank=True)
-    doi = models.CharField(max_length=20, null=True, blank=True)
+    doi = models.CharField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return f"{self.journal} // {self.title}"
@@ -39,6 +39,7 @@ class Conference(models.Model):
     name_conf = models.TextField()
     date  = models.CharField(max_length=20)
     place = models.TextField()
+    website = models.URLField(null=True, blank=True)
     url_abstract = models.URLField(null=True, blank=True)
 
     def __str__(self):

@@ -31,7 +31,7 @@
       {{publication.journal}}. {{publication.year}}. {{publication.parameters}}.
       
       {%if publication.doi != NULL %}
-        {{publication.doi}}
+        <a href="https://{{ publication.doi }}"> {{ publication.doi }} </a>
       {%endif%}
     </li>
   {% endfor %}
