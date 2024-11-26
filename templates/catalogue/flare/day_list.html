@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block styles %}
+<link rel="stylesheet" href="{% static 'css/catalogue.css' %}">
+{% endblock styles %}
+
+{% block page_content %}
+    <h1> {{ list }} </h1>
+
+{% endblock page_content%}
