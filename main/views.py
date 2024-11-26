@@ -7,17 +7,17 @@ from django.views.generic.detail import DetailView
 class ConferenceDetailView(DetailView):
     model = Presentation
     context_object_name = 'presentation_list'
-    template_name = 'tabs/conference.html'
+    template_name = 'main/tabs/conference.html'
 
     def get_context_data(self, request, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context['presentation_list'] = Presentation.objects.filter(conf_id=self.kwargs['pk'])
 
-        return render(request, "tabs/conference.html", context)
+        return render(request, "main/tabs/conference.html", context)
 
 
 def home(request):
-    return render(request, "main/home.html", {})
+    return render(request, "main/main/home.html", {})
 
 
 def tab_users(request):
@@ -26,11 +26,11 @@ def tab_users(request):
         "team": team,
         "active-nav-item": 'users',
     }
-    return render(request, "tabs/users.html", context)
+    return render(request, "main/tabs/users.html", context)
 
 
 def tab_publications(request):
-    return render(request, "tabs/publications.html", {})
+    return render(request, "main/tabs/publications.html", {})
 
 
 def tab_conference(request):
@@ -40,11 +40,11 @@ def tab_conference(request):
         "conferences": conferences,
         "presentation": presentation
     }
-    return render(request, "tabs/conference.html", context)
+    return render(request, "main/tabs/conference.html", context)
 
 
 def tab_results(request):
-    return render(request, "tabs/results.html", {})
+    return render(request, "main/tabs/results.html", {})
 
 
 def tab_publication_abstract(request):
@@ -54,14 +54,14 @@ def tab_publication_abstract(request):
         "conferences": conferences,
         "presentation": presentation
     }
-    return render(request, "publications/abstract.html", context)
+    return render(request, "main/publications/abstract.html", context)
 
 
 def tab_publication_proceedings(request):
     proceeding = Proceedings.objects.all()
     context = {'proceedings': proceeding}
-    return render(request, "publications/proceedings.html", context)
+    return render(request, "main/publications/proceedings.html", context)
 
 
 def tab_publication_papers(request):
-    return render(request, "publications/papers.html", {})
+    return render(request, "main/publications/papers.html", {})
