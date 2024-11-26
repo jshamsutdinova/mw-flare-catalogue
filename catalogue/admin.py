@@ -1,10 +1,9 @@
 from django.contrib import admin
-from catalogue.models import YearMonth, SummaryDay
+from catalogue.models import FlareList
 
 # Register your models here.
 
 class CatalogueAdmin(admin.ModelAdmin):
     pass
 
-admin.site.register(YearMonth, CatalogueAdmin)
-admin.site.register(SummaryDay, CatalogueAdmin)
+admin.site.register(FlareList, CatalogueAdmin)

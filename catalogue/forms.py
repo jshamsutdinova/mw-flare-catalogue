@@ -1,5 +1,4 @@
 from django import forms
-from .models import YearMonth
 from django.utils.dates import MONTHS
 
 
