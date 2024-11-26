@@ -1,23 +1,26 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.utils.dates import MONTHS
 
-from catalogue.models import SummaryDay, YearMonth
+from catalogue.models import FlareList
 from .forms import YearMonthForm
 
 
-def index(request):
+def month_flare_list(request):
     if request.method == 'POST':
         form = YearMonthForm(request.POST)
         if form.is_valid():
             year = form.cleaned_data['year']
             month = form.cleaned_data['month']
-            records = SummaryDay.objects.filter(year_month__year=year, year_month__month=month)
+            records = FlareList.objects.filter(date__year=year, date__month=month)
             return render(request, 'catalogue/form.html',  {'form': form,
-                                                                        'records': records,
-                                                                        'year': year,
-                                                                        'month': MONTHS[int(month)]})
+                                                            'records': records,
+                                                            'year': year,
+                                                            'month': MONTHS[int(month)]})
     else:
         userform = YearMonthForm()
         return render(request, 'catalogue/form.html', {'form': userform})
 
+def flare_list(request, dt):
+    list = get_object_or_404(FlareList, date=str(dt))
+    return render(request, "catalogue/flare/day_list.html", {'list': list})
