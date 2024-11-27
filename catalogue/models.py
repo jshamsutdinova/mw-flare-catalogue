@@ -10,7 +10,7 @@ class FlareList(models.Model):
     csv_file = models.FileField(upload_to="csv/", null=True)
 
     class Meta:
-        ordering = ['-date']
+        ordering = ['date']
 
     def __str__(self):
         return self.date.strftime("%Y-%m-%d")
