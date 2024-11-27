@@ -6,58 +6,50 @@
 {% endblock styles %} {% endcomment %}
 
 {% block page_content %}
-<h2> Catalogue of the flares observed by Siberian Radioheliograph </h2>
-<div class="parent">
-    <div class="div-form">
-        <form method="post" class='form'>
-            {% csrf_token %}
-            <div class="form-group">
-                <table>
-                    {{ form.as_table }}
-                </table>
-            </div>
-            <input type="submit" value="Submit" class="btn btn-primary mt-2">
-        </form>
-    </div>
-    
-    <div class="div2">
-        {% if records.count > 0 %}
-        <h2>List event in {{ month }}, {{ year }} </h2>
-        <div class="day-grid">
-            {% for record in records %}
-                <div class="day">    
-                    <a href="{{ record.get_absolute_url }}"> {{ record }} </a>
-                    <img class="fit-picture" src="{{ record.diagram }}" />
+    <h2 class='pb-3'> Catalogue of the flares observed by Siberian Radioheliograph </h2>
+    <div class="parent">
+        <div class="div-form">
+            <form method="post" class='form'>
+                {% csrf_token %}
+                <div class="form-group">
+                    <table>
+                        {{ form.as_table }}
+                    </table>
                 </div>
-            {% endfor %}
+                <input type="submit" value="Submit" class="btn btn-primary mt-2">
+            </form>
         </div>
-
-
-
-        <table>
-            <thead align="center">
-                <tr>
-                    <th width="20%"> Date </th>
-                    <th width="20%"> Flare number </th>
-                    <th width="50%"> Diagram </th>
-                </tr>
-            </thead>
-            <tbody align="center">
-            {% for record in records %}
-                <tr>
-                    <td><a href="{{ record.get_absolute_url }}"> {{ record }} </a></td>
-                    <td> {{ record.flare_num }} </td>
-                    <td> {{ record.diagram }} </td>
-                </tr>
-            {% endfor %}
-            </tbody>
-    
-    
-        {% elif  records.count == 0 %}
-            <h2> No events in {{ month }}, {{ year }}</h2>    
-        {% endif %}
-    
+        
+        <div class="div2">
+            {% if records.count > 0 %}
+            <h2 class='header_list'>List of events for {{ month }}, {{ year }} </h2>
+                <table class="table table-hover ">
+                    <thead>
+                      <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Flare number</th>
+                        <th scope="col">Download dataset</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                    {% for record in records %}
+                      <tr>
+                        <th scope="row"><a href="{{ record.get_absolute_url }}"> {{ record }} </a></th>
+                        <td>{{ record.num_flare }}</td>
+                        <td><a href="{{ record.csv_file.url }}" download> {{ record.csv_file }}</td>
+                      </tr>
+                      <tr>
+                    {% endfor %}
+                    
+                    </tbody>
+                  </table>
+        
+        
+            {% elif  records.count == 0 %}
+                <h2 class='header_list'> No events in {{ month }}, {{ year }}</h2>    
+            {% endif %}
+        
+        </div>
     </div>
-</div>
 {% endblock page_content %}
 

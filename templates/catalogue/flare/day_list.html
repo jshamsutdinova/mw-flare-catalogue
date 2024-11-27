@@ -7,6 +7,31 @@
 {% endblock styles %}
 
 {% block page_content %}
-    <h1> {{ list }} </h1>
+    <div class="div-img">    
+        <img src="{{ list.diagram.url }}" alt=""/>
+    </div>
+    
+    <table class="table table-hover table-sm">
+        <thead>
+          <tr>
+            <th scope="col">Start (UT)</th>
+            <th scope="col">Maximum (UT)</th>
+            <th scope="col">End (UT)</th>
+            <th scope="col">Min freq </th>
+            <th scope="col">Max freq </th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for record in records %}
+          <tr>
+            <th scope="row"><a href="{{ record.get_absolute_url }}"> {{ record }} </a></th>
+            <td>{{ record.num_flare }}</td>
+            <td>{{ record.csv_file }}</td>
+          </tr>
+          <tr>
+        {% endfor %}
+        
+        </tbody>
+      </table>
 
 {% endblock page_content%}
