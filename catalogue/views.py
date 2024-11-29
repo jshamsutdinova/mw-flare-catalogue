@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponse
 from django.utils.dates import MONTHS
 
-from catalogue.models import FlareList
+from catalogue.models import FlareList, Flare
 from .forms import YearMonthForm
 
 
@@ -23,4 +23,6 @@ def month_flare_list(request):
 
 def flare_list(request, dt):
     list = get_object_or_404(FlareList, date=str(dt))
-    return render(request, "catalogue/flare/day_list.html", {'list': list})
+    flares = Flare.objects.filter(date__date=str(dt))
+    return render(request, "catalogue/flare/day_list.html", {'list': list,
+                                                             'flares': flares})

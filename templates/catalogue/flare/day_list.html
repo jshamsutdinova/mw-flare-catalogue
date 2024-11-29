@@ -11,8 +11,8 @@
         <img src="{{ list.diagram.url }}" alt=""/>
     </div>
     
-    <table class="table table-hover table-sm">
-        <thead>
+    <table class="table table-hover table-sm table-bordered">
+        <thead class="table-light">
           <tr>
             <th scope="col">Start (UT)</th>
             <th scope="col">Maximum (UT)</th>
@@ -22,11 +22,13 @@
           </tr>
         </thead>
         <tbody>
-        {% for record in records %}
+        {% for flare in flares %}
           <tr>
-            <th scope="row"><a href="{{ record.get_absolute_url }}"> {{ record }} </a></th>
-            <td>{{ record.num_flare }}</td>
-            <td>{{ record.csv_file }}</td>
+            <td> {{ flare.start_event }}</th>
+            <td>{{ flare.maximum_event }}</td>
+            <td>{{ flare.finish_event }}</td>
+            <td>{{ flare.min_freq }}</td>
+            <td>{{ flare.max_freq }}</td>
           </tr>
           <tr>
         {% endfor %}
@@ -34,4 +36,4 @@
         </tbody>
       </table>
 
-{% endblock page_content%}
+{% endblock page_content%}  
