@@ -37,7 +37,7 @@ class Proceedings(models.Model):
 
 class Conference(models.Model):
     name_conf = models.TextField()
-    date  = models.CharField(max_length=20)
+    date  = models.CharField(max_length=25)
     place = models.TextField()
     website = models.URLField(null=True, blank=True)
     url_abstract = models.URLField(null=True, blank=True)
@@ -47,7 +47,11 @@ class Conference(models.Model):
 
 
 class Presentation(models.Model):
-    type = models.CharField(max_length=20)
+    class Type(models.TextChoices):
+        TALK = 'talk', 'Устный доклад'
+        POSTER = 'poster', 'Постер'
+
+    type = models.CharField(max_length=6, choices=Type.choices)
     name = models.TextField()
     first_author = models.CharField(max_length=30)
     authors = models.TextField()
