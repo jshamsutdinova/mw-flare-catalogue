@@ -1,5 +1,5 @@
 from django.contrib import admin
-from catalogue.models import FlareList, Flare, TestFlare
+from catalogue.models import FlareList, Flare
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
