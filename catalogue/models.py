@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class FlareList(models.Model):
-    date = models.DateField(unique=True)
+    date = models.DateField()
     num_flare = models.PositiveIntegerField(null=True)
     diagram = models.ImageField(upload_to="img/", null=True)
     csv_file = models.FileField(upload_to="csv/", null=True)
