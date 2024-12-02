@@ -35,10 +35,13 @@ def tab_publications(request):
 
 def tab_conference(request):
     conferences = Conference.objects.all()
-    presentation = Presentation.objects.all()
+    talks = Presentation.objects.filter(type='talk')
+    posters = Presentation.objects.filter(type='poster')
+    
     context = {
         "conferences": conferences,
-        "presentation": presentation
+        "talks": talks,
+        "posters": posters,
     }
     return render(request, "main/tabs/conference.html", context)
 
