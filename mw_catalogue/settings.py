@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-=e-3o%rw__=bo%^8zg$d0lwk7b&r^!$*6kbu$ji^75g$q8k=#3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [] 
 
 
 # Application definition
@@ -74,6 +74,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'mw_catalogue.wsgi.application'
+
+CSRF_TRUSTED_ORIGINS = ['http://stmw.iszf.irk.ru', 'https://stmw.iszf.irk.ru']
 
 
 # Database
