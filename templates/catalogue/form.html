@@ -1,5 +1,7 @@
 <!-- catalogue/templates/catalogue/form_year_month.html -->
 {% extends "base.html" %}
+{% load bootstrap_icons %}
+
 
 {% comment %} {% block styles %}
 <link rel="stylesheet" href="{% static 'css/form.css' %}">
@@ -7,6 +9,13 @@
 
 {% block page_content %}
     <h2 class='pb-3'> Catalogue of the flares observed by Siberian Radioheliograph </h2>
+
+    <div class="alert alert-warning d-flex align-items-center" role="alert">
+      <div>
+        {% md_icon 'alert' %} The catalogue is currently in testing mode. 
+      </div>
+    </div>
+
     <div class="parent">
         <div class="div-form">
             <form method="post" class='form'>
@@ -36,7 +45,7 @@
                       <tr>
                         <th scope="row"><a href="{{ record.get_absolute_url }}"> {{ record }} </a></th>
                         <td>{{ record.num_flare }}</td>
-                        <td><a href="{{ record.csv_file.url }}" download> {{ record.csv_file.name }}</td>
+                        <td><a href="{{ record.csv_file.url }}" download> {{ record.filename }}</td>
 
                       </tr>
                       <tr>

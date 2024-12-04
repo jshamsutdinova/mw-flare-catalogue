@@ -1,6 +1,6 @@
+import os
 from django.db import models
 from django.urls import reverse
-from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class FlareList(models.Model):
@@ -19,8 +19,11 @@ class FlareList(models.Model):
     def get_absolute_url(self):
         dt = self.date.strftime("%Y%m%d")
         return reverse("catalogue:flare_list", args=[dt])
-
-
+    
+    def filename(self):
+        return os.path.basename(self.csv_file.name)
+    
+   
 class Flare(models.Model):
     date = models.ForeignKey(FlareList, on_delete=models.CASCADE)
     start_event = models.TimeField()
