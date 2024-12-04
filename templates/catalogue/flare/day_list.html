@@ -24,9 +24,9 @@
         <tbody>
         {% for flare in flares %}
           <tr>
-            <td> {{ flare.start_event }}</th>
-            <td>{{ flare.maximum_event }}</td>
-            <td>{{ flare.finish_event }}</td>
+            <td> {{ flare.start_event|time:"H:i:s" }}</th>
+            <td>{{ flare.maximum_event|time:"H:i:s" }}</td>
+            <td>{{ flare.finish_event|time:"H:i:s" }}</td>
             <td>{{ flare.min_freq }}</td>
             <td>{{ flare.max_freq }}</td>
           </tr>
