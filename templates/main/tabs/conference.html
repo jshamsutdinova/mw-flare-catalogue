@@ -8,7 +8,7 @@
         <h4 class='fw-bold' style="color: #0a4275;"> {{ conf.name_conf }} </h4>
         <div class="d-flex justify-content-between">
             <h5 class="text-muted"><em> {{ conf.date}}, {{ conf.place }} </em></h5>
-            <h5><a href="{{ conf.website }}"> {{ conf.website }} </a> </h5>
+            <h5><a href="{{ conf.website }} " target="_blank"> {{ conf.website }} </a> </h5>
         </div>
     </div>
 
@@ -16,9 +16,11 @@
         <h5 style="color: grey;"><b>Устные доклады</b></h5>
         {% for talk in talks %}
             {% if talk.conf_id == conf.id %}
-                <div class="my-1" style="padding-left:30px;"> 
-                    <a href="">[pdf]</a>
-                    <b>{{ talk.name }}</b><em><u> {{ talk.first_author }},</u> {{ talk.authors }}</em>    
+                <div class="my-1" style="padding-left:30px;">
+                    {% if talk.pdf %} 
+                        <a href="{{ talk.pdf.url }}" target="_blank">[pdf]</a>
+                    {% endif %}    
+                    <b>{{ talk.name }}</b><em><u> {{ talk.first_author }},</u> {{ talk.authors }} </em>    
                 </div>
             {% endif %}
         {% endfor %}
@@ -27,7 +29,9 @@
         {% for poster in posters %}
             {% if poster.conf_id == conf.id %}
                 <div class="my-1" style="padding-left:30px;"> 
-                    <a href="">[pdf]</a>
+                    {% if poster.pdf %} 
+                        <a href="{{ poster.pdf.url }}" target="_blank">[pdf]</a>
+                    {% endif %}    
                     <b>{{ poster.name }}</b><em><u> {{ poster.first_author }},</u> {{ poster.authors }}</em>  
                 </div>
             {% endif %}
