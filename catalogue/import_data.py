@@ -1,11 +1,11 @@
 import os
 import pandas as pd
 from datetime import datetime
-from catalogue.models import FlareList, Flare, TestFlare 
+from catalogue.models import FlareList, Flare
 from django.conf import settings
 
-FDIR = 'csv/events_122023/'
-FDIR_IMG = 'img/png_events_122023/'
+FDIR = 'csv/events_112024/'
+FDIR_IMG = 'img/png_events_112024/'
 
 
 def import_catalogue():
