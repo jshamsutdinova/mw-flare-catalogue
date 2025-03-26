@@ -11,4 +11,5 @@ class FlareListAdmin(admin.ModelAdmin):
 
 @admin.register(Flare)
 class FlareAdmin(admin.ModelAdmin):
-    list_display = ('date', 'start_event', 'finish_event',)
+    list_display = ['date', 'start_event', 'finish_event', 'updated']
+    list_filter = ['tag']
