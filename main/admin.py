@@ -12,7 +12,7 @@ class ConferenceAdmin(admin.ModelAdmin):
 @admin.register(Presentation)
 class PresentatationAdmin(admin.ModelAdmin):
     list_display = ['name', 'type', 'conf', 'first_author']
-    list_filter = ['type', 'first_author', 'conf']
+    list_filter  = ['type', 'first_author', 'conf']
 
 
 admin.site.register(Proceedings)

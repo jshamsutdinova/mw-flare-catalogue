@@ -42,7 +42,7 @@ def read_csv(dt, fpath_csv):
             date = dt,
             start_event = row['start event'],
             maximum_event = row['maximum event'],
-            finish_event = row ['finish event'],
+            finish_event  = row ['finish event'],
             min_freq = row['min freq GHz'],
             max_freq = row['max freq GHz']
         )

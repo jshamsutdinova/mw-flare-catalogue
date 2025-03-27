@@ -9,6 +9,5 @@ YEAR_CHOICES =(
 
 
 class YearMonthForm(forms.Form):
-    year = forms.ChoiceField(choices=YEAR_CHOICES)
+    year  = forms.ChoiceField(choices=YEAR_CHOICES)
     month = forms.ChoiceField(choices=MONTHS)
- 
