@@ -1,6 +1,8 @@
 <!-- catalogue/templates/catalogue/form_year_month.html -->
 {% extends "base.html" %}
 {% load bootstrap_icons %}
+{% load custom_filters %}
+
 
 
 {% comment %} {% block styles %}
@@ -15,6 +17,9 @@
         {% md_icon 'alert' %} The catalogue is currently in testing mode. 
       </div>
     </div>
+    <div class="alert alert-info" role="alert">
+      {% md_icon 'update' %} We added tags to events.
+    </div>
 
     <div class="parent">
         <div class="div-form">
@@ -27,8 +32,20 @@
                 </div>
                 <input type="submit" value="Submit" class="btn btn-primary mt-2">
             </form>
+
+            <div class="div-cnn">
+              <b>Delete artifacts </b>
+
+              <div class="form-check form-switch">
+                <input class="form-check-input" type="checkbox" id="delToggle" name="del_toggle">
+                <label class="form-check-label" for="delToggle">Apply CNN</label>
+              </div>
+
+              <b> {{flare_list }} </b>
+
+            </div>
         </div>
-        
+
         <div class="div2">
             {% if records.count > 0 %}
             <h2 class='header_list'>List of events for {{ month }}, {{ year }} </h2>
@@ -37,21 +54,20 @@
                       <tr>
                         <th scope="col">Date</th>
                         <th scope="col">Flare number</th>
-                        <th scope="col">Download dataset</th>
+                        <th scope="col">Download SRH data</th>
                       </tr>
                     </thead>
                     <tbody>
-                    {% for record in records %}
+                    {% for record, obj in records|zip:objects %}
                       <tr>
-                        <th scope="row"><a href="{{ record.get_absolute_url }}"> {{ record }} </a></th>
-                        <td>{{ record.num_flare }}</td>
-                        <td><a href="{{ record.csv_file.url }}" download> {{ record.filename }}</td>
-
+                        <th scope="row"><a href="{{ obj.get_absolute_url }}"> {{ record.date|date:'Y-m-d' }} </a></th>
+                        <td>{{ record.date__count }}</td>
+                        <td> test </td>
                       </tr>
                       <tr>
                     {% endfor %}
                     
-                    </tbody>
+                    </tbody>  
                   </table>
         
         
