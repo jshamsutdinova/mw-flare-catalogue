@@ -1,53 +1,63 @@
 import os
 import pandas as pd
 from datetime import datetime
-from catalogue.models import FlareList, Flare
+from catalogue.models import Flare
 from django.conf import settings
 
-FDIR = 'csv/events_112024/'
-FDIR_IMG = 'img/png_events_112024/'
+
+class ImportFlareCatalogue():
+    """ This class import recognized flares to database """
+
+    def __init__(self, fpath):
+        self.fpath = fpath
+        self.fname = os.path.basename(fpath)
+        self.date = self.get_date()
 
 
-def import_catalogue():
-    fdir_local = os.path.join(settings.MEDIA_ROOT, FDIR)
-    fdir_img_local = os.path.join(settings.MEDIA_ROOT, FDIR_IMG)
+    def get_date(self):
+        """ Return datetime.date obtained from csv file name """
+        date_str = self.fname.split('_')[1].split('.')[0]
+        date_obj = datetime.strptime(date_str, '%Y%m%d')
+
+        return date_obj
     
-    flist = os.listdir(fdir_local)
-    flist.sort()
 
-    flist_img = os.listdir(fdir_img_local)
-    flist_img.sort()
+    def convert_time(self, time):
+        """ Convert time string to datetime object """
+        tm_obj = datetime.strptime(time, '%H:%M:%S')
+        dt_obj = datetime.combine(self.date.date(), tm_obj.time())
 
-    for ff, ff_img in zip(flist, flist_img):
-        df = pd.read_csv(fdir_local+ff, delimiter='\t')
+        return dt_obj
+
+
+    def add_flare_to_db(self):
+        """ Create flare record in Flare model and save to the DB """
+        df = pd.read_csv(self.fpath, delimiter='\t')
+
+        for index, row in df.iterrows():
+            flare = Flare(
+                date = self.date.date(),
+                start_event = self.convert_time(row['start event']),
+                maximum_event = self.convert_time(row['maximum event']),
+                end_event  = self.convert_time(row ['finish event']),
+                min_freq = row['min freq GHz'],
+                max_freq = row['max freq GHz']
+            )
+            flare.save()
         
-        dt_str = ff.split('_')[1].split('.')[0]
-        dt = datetime.strptime(dt_str, '%Y%m%d')
+FDIR = 'csv'
+dir_local = os.path.join(settings.MEDIA_ROOT, FDIR)
 
-        flare_list = FlareList(
-            date = dt,
-            num_flare = len(df),
-            diagram = os.path.join(FDIR_IMG, ff_img),
-            csv_file = os.path.join(FDIR, ff),
-        )
-        flare_list.save()
-        read_csv(flare_list, fdir_local+ff)
+dir_list = os.listdir(dir_local)
 
-
-def read_csv(dt, fpath_csv):
-    df = pd.read_csv(fpath_csv, delimiter='\t')
-
-    for index, row in df.iterrows():
-        flare = Flare(
-            date = dt,
-            start_event = row['start event'],
-            maximum_event = row['maximum event'],
-            finish_event  = row ['finish event'],
-            min_freq = row['min freq GHz'],
-            max_freq = row['max freq GHz']
-        )
-
-        flare.save()
-
-import_catalogue()
-print('CSV data has been loaded into the Django database.')
+for dir in dir_list:
+    dir_csv = os.path.join(dir_local, dir)
+    flist = sorted(os.listdir(dir_csv))
+    
+    for ff in flist:
+        fpath = os.path.join(dir_csv, ff)
+        import_obj = ImportFlareCatalogue(fpath)
+        import_obj.add_flare_to_db()
+        print(fpath)
+                    
+print('Import finished!')

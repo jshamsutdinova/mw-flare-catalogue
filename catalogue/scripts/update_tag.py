@@ -22,7 +22,8 @@ def update_tag():
     
     for idx, row in df.iterrows():
         date_obj = get_datetime_filter(row['filename'])
-        Flare.objects.filter(date__date=date_obj.date(), start_event=date_obj.time()).update(tag=row['tag'])
+        print(date_obj)
+        Flare.objects.filter(date=date_obj.date(), start_event=date_obj).update(tag=row['tag'])
     
 update_tag()
 print('Tag update finished.')
