@@ -16,7 +16,7 @@ class Flare(models.Model):
     end_event = models.DateTimeField(null=True)
     min_freq  = models.FloatField()
     max_freq  = models.FloatField()
-    tag = models.IntegerField(default=Tag.FLARE, choices=Tag.choices)
+    tag = models.IntegerField(default=Tag.ARTIFACT, choices=Tag.choices)
 
     updated = models.DateTimeField(auto_now=True)
 
