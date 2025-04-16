@@ -12,8 +12,14 @@ def month_flare_list(request):
         if form.is_valid():
             year = form.cleaned_data['year']
             month = form.cleaned_data['month']
-            flare_counts = Flare.objects.filter(
-                date__year=year, date__month=month).values('date').annotate(Count('date')).order_by()
+            delete_artifacts = form.cleaned_data['delete_artifacts']
+            
+            if delete_artifacts:
+                flare_counts = Flare.objects.filter(
+                    date__year=year, date__month=month, tag=0).values('date').annotate(Count('date')).order_by()
+            else:
+                flare_counts = Flare.objects.filter(
+                    date__year=year, date__month=month).values('date').annotate(Count('date')).order_by()
             
             objects = []
             for rec in flare_counts:
@@ -26,9 +32,9 @@ def month_flare_list(request):
                                                             'year': year,
                                                             'month': MONTHS[int(month)]})
     else:
-        userform = YearMonthForm() 
+        userform = YearMonthForm()
         return render(request, 'catalogue/form.html', {'form': userform})
- 
+
 
 def flare_list(request, year, month, day):
     flares = Flare.objects.filter(date__year=year,
@@ -38,12 +44,10 @@ def flare_list(request, year, month, day):
 
 
 def delete_artifacts(request):
-    if request.method == 'POST':
-        del_toggle = request.POST.get('del_toggle', False)
-
-        if del_toggle:
-            flare_list = Flare.objects.filter(tag=0)
-        else:
-            flare_list = Flare.objects.all()
+    if request.GET.get('delete_switch') == 'true':
+        flares = Flare.objects.filter(tag=0)
+        is_deleted = True
+    else:
+        flares = Flare.objects.all()
         
     return render(request, 'catalogue/form.html', {'flare_list': flare_list})

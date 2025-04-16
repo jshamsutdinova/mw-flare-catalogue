@@ -11,3 +11,8 @@ YEAR_CHOICES =(
 class YearMonthForm(forms.Form):
     year  = forms.ChoiceField(choices=YEAR_CHOICES)
     month = forms.ChoiceField(choices=MONTHS)
+    delete_artifacts = forms.BooleanField(
+        label="Delete artifacts",
+        required=False,
+        initial=False,
+        widget=forms.CheckboxInput())
