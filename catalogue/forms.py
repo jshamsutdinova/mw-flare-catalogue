@@ -14,5 +14,4 @@ class YearMonthForm(forms.Form):
     delete_artifacts = forms.BooleanField(
         label="Delete artifacts",
         required=False,
-        initial=False,
-        widget=forms.CheckboxInput())
+        initial=False)
