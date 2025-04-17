@@ -13,6 +13,7 @@ def month_flare_list(request):
             year = form.cleaned_data['year']
             month = form.cleaned_data['month']
             delete_artifacts = form.cleaned_data['delete_artifacts']
+            request.session['form_data'] = form.cleaned_data
             
             if delete_artifacts:
                 flare_counts = Flare.objects.filter(
@@ -37,17 +38,16 @@ def month_flare_list(request):
 
 
 def flare_list(request, year, month, day):
-    flares = Flare.objects.filter(date__year=year,
-                                  date__month=month,
-                                  date__day=day)
-    return render(request, "catalogue/flare/day_list.html", {'flares': flares})
+    form_data = request.session.get('form_data')
 
-
-def delete_artifacts(request):
-    if request.GET.get('delete_switch') == 'true':
-        flares = Flare.objects.filter(tag=0)
-        is_deleted = True
+    if form_data['delete_artifacts']:
+        flares = Flare.objects.filter(date__year=year,
+                                      date__month=month,
+                                      date__day=day, 
+                                      tag=0)
     else:
-        flares = Flare.objects.all()
-        
-    return render(request, 'catalogue/form.html', {'flare_list': flare_list})
+        flares = Flare.objects.filter(date__year=year,
+                                      date__month=month,
+                                      date__day=day)
+
+    return render(request, "catalogue/flare/day_list.html", {'flares': flares})

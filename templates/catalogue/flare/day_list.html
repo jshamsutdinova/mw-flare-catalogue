@@ -7,9 +7,9 @@
 {% endblock styles %}
 
 {% block page_content %}
-    <div class="div-img">    
+    {% comment %} <div class="div-img">    
         <img src="{{ list.diagram.url }}" alt=""/>
-    </div>
+    </div> {% endcomment %}
     
     <table class="table table-hover table-sm table-bordered">
         <thead class="table-light">
@@ -24,9 +24,9 @@
         <tbody>
         {% for flare in flares %}
           <tr>
-            <td> {{ flare.start_event|time:"H:i:s" }}</th>
+            <td>{{ flare.start_event|time:"H:i:s" }}</td>
             <td>{{ flare.maximum_event|time:"H:i:s" }}</td>
-            <td>{{ flare.finish_event|time:"H:i:s" }}</td>
+            <td>{{ flare.end_event|time:"H:i:s" }}</td>
             <td>{{ flare.min_freq }}</td>
             <td>{{ flare.max_freq }}</td>
           </tr>
