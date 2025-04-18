@@ -25,13 +25,26 @@
         <div class="div-form">
             <form method="post" class='form'>
                 {% csrf_token %}
-              <div class="form-group">
+              
+                <div class="form-group">
+                  <table>
+                    <tr>
+                      <td><b>{{ form.year.label }}:</b></td>               
+                      <td>{{ form.year }}</td>
+                    </tr>
+                    <tr>
+                      <td><b>{{ form.month.label }}:</b></td>               
+                      <td>{{ form.month }}</td>
+                    </tr>
+                  </table>
+                </div>
+              {% comment %} <div class="form-group">
                 <b>{{ form.year.label }}:</b> {{ form.year }}
               </div>
 
               <div class="form-group">
                 <b>{{ form.month.label }}:</b> {{ form.month }}
-              </div>
+              </div> {% endcomment %}
 
               <div class="form-group">
                 <b> {{ form.delete_artifacts.label }}:</b> 
