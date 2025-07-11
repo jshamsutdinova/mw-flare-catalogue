@@ -4,7 +4,7 @@ from datetime import datetime
 from catalogue.models import Flare
 from django.conf import settings
 
-FNAME = 'targets/tags_srh_2023_2024.csv'
+FNAME = 'targets/tags_srh_06_2025.csv'
 FPATH = os.path.join(settings.MEDIA_ROOT, FNAME)
 
 
