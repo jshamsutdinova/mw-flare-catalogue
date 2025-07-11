@@ -57,7 +57,7 @@ class Presentation(models.Model):
     authors = models.TextField()
     conf = models.ForeignKey(Conference, on_delete=models.CASCADE, null=True)
     page = models.IntegerField(null=True)
-    pdf = models.FileField(null=True, upload_to='pdfs/')
+    pdf = models.FileField(null=True, blank=True, upload_to='pdfs/')
     
     class  Meta:
         ordering = ['-type', 'first_author']
