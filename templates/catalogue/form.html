@@ -38,22 +38,19 @@
                     </tr>
                   </table>
                 </div>
-              {% comment %} <div class="form-group">
-                <b>{{ form.year.label }}:</b> {{ form.year }}
-              </div>
 
-              <div class="form-group">
-                <b>{{ form.month.label }}:</b> {{ form.month }}
+              {% comment %} <div class="form-group d-flex flex-row-reverse align-items-center" >
+                <label class="form-check-label ml-5" for="deleteArtId">{{ form.delete_artifacts.label }}</label>
+                
+                <div class="form-check form-switch ">
+                  <input class="form-check-input" type="checkbox" role='switch' id="deleteArtId" name="delete_artifacts" {% if form.delete_artifacts.value %} checked{% endif %}>
+                </div> 
               </div> {% endcomment %}
 
-              <div class="form-group">
-                <b> {{ form.delete_artifacts.label }}:</b> 
-                
-                <div class="form-check form-switch">
-                  <input class="form-check-input" type="checkbox" role='switch' id="deleteArtId" name="delete_artifacts" {% if form.delete_artifacts.value %} checked{% endif %}>
-                  <label class="form-check-label" for="deleteArtId">Apply CNN</label>
-                </div> 
-              </div>
+              <div class="form-check form-switch  align-items-center">
+                <label class="form-check-label ms-1" for="deleteArtId">{{ form.delete_artifacts.label }}</label>
+                <input class="form-check-input" type="checkbox" role="switch" id="deleteArtId" name="delete_artifacts" {% if form.delete_artifacts.value %}checked{% endif %}>
+              </div> 
 
                 <input type="submit" value="Submit" class="btn btn-primary mt-2">
             </form>
