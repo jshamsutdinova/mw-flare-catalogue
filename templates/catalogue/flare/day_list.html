@@ -10,7 +10,11 @@
     {% comment %} <div class="div-img">    
         <img src="{{ list.diagram.url }}" alt=""/>
     </div> {% endcomment %}
-    
+    {% autoescape  off %}
+      {{ plot }}
+    {% endautoescape %}
+
+
     <table class="table table-hover table-sm table-bordered">
         <thead class="table-light">
           <tr>
