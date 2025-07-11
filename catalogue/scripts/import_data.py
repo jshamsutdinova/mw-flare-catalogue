@@ -45,19 +45,15 @@ class ImportFlareCatalogue():
             )
             flare.save()
         
-FDIR = 'csv'
+FDIR = 'csv/events_062025'
 dir_local = os.path.join(settings.MEDIA_ROOT, FDIR)
 
-dir_list = os.listdir(dir_local)
-
-for dir in dir_list:
-    dir_csv = os.path.join(dir_local, dir)
-    flist = sorted(os.listdir(dir_csv))
+flist = os.listdir(dir_local)
     
-    for ff in flist:
-        fpath = os.path.join(dir_csv, ff)
-        import_obj = ImportFlareCatalogue(fpath)
-        import_obj.add_flare_to_db()
-        print(fpath)
+for ff in flist:
+    fpath = os.path.join(dir_local, ff)
+    import_obj = ImportFlareCatalogue(fpath)
+    import_obj.add_flare_to_db()  
+    print(fpath)
                     
 print('Import finished!')
