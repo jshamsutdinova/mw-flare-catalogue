@@ -4,7 +4,8 @@ from django.utils.dates import MONTHS
 
 YEAR_CHOICES =( 
     (2023, 2023), 
-    (2024, 2024)
+    (2024, 2024),
+    (2025, 2025),
 ) 
 
 
